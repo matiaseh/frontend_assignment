@@ -21,43 +21,34 @@ const Dashboard: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [sortField, setSortField] = useState<'name' | 'email'>('name');
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data</div>;
-  if (!data || data.length === 0) {
-    return <div>No users found.</div>;
-  }
+  const renderContent = () => {
+    if (isLoading) return <div className={styles.loading}>Loading...</div>;
+    if (error) return <div className={styles.error}>Error loading data</div>;
+    if (!data || data.length === 0) {
+      return <div className={styles.noUsers}>No users found.</div>;
+    }
 
-  const filteredUsers = data.filter(user => {
-    const searchLower = searchTerm.toLowerCase();
+    const filteredUsers = data.filter(user => {
+      const searchLower = searchTerm.toLowerCase();
+      return (
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower) ||
+        user.phone.toLowerCase().includes(searchLower) ||
+        user.address.street.toLowerCase().includes(searchLower) ||
+        user.address.city.toLowerCase().includes(searchLower)
+      );
+    });
+
+    const sortedUsers = [...filteredUsers].sort((a, b) => {
+      const fieldA = sortField === 'name' ? a.name : a.email;
+      const fieldB = sortField === 'name' ? b.name : b.email;
+
+      return sortOrder === 'asc'
+        ? fieldA.localeCompare(fieldB)
+        : fieldB.localeCompare(fieldA);
+    });
+
     return (
-      user.name.toLowerCase().includes(searchLower) ||
-      user.email.toLowerCase().includes(searchLower) ||
-      user.phone.toLowerCase().includes(searchLower) ||
-      user.address.street.toLowerCase().includes(searchLower) ||
-      user.address.city.toLowerCase().includes(searchLower)
-    );
-  });
-
-  const sortedUsers = [...filteredUsers].sort((a, b) => {
-    const fieldA = sortField === 'name' ? a.name : a.email;
-    const fieldB = sortField === 'name' ? b.name : b.email;
-
-    return sortOrder === 'asc'
-      ? fieldA.localeCompare(fieldB)
-      : fieldB.localeCompare(fieldA);
-  });
-
-  return (
-    <div className={styles.dashboard}>
-      <h1>User Dashboard</h1>
-      <UserFilters
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-        sortField={sortField}
-        setSortField={setSortField}
-      />
       <div className={styles.userCards}>
         {sortedUsers.map(user => (
           <div key={user.id} className={styles.userCard}>
@@ -78,6 +69,21 @@ const Dashboard: React.FC = () => {
           </div>
         ))}
       </div>
+    );
+  };
+
+  return (
+    <div className={styles.dashboard}>
+      <h1>User Dashboard</h1>
+      <UserFilters
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        sortField={sortField}
+        setSortField={setSortField}
+      />
+      {renderContent()}
     </div>
   );
 };
