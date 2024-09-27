@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.dashboard}>
-      <h1>User List</h1>
+      <h1>User Dashboard</h1>
       <UserFilters
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
