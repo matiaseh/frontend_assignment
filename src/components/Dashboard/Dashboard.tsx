@@ -28,6 +28,7 @@ const Dashboard: React.FC = () => {
       return <div className={styles.noUsers}>No users found.</div>;
     }
 
+    // Filter the users data based on user input
     const filteredUsers = data.filter(user => {
       const searchLower = searchTerm.toLowerCase();
       return (
@@ -39,6 +40,7 @@ const Dashboard: React.FC = () => {
       );
     });
 
+    // Sort the filtered users either by name/email in ascending or descending order
     const sortedUsers = [...filteredUsers].sort((a, b) => {
       const fieldA = sortField === 'name' ? a.name : a.email;
       const fieldB = sortField === 'name' ? b.name : b.email;
