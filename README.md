@@ -9,5 +9,5 @@ Current features:
 ## Running the app for development
 
 - Clone the repository
-- Rename `.env_example` to `.env`
+- Rename `.env.example` to `.env`
 - Run `npm install` and `npm run dev`
