@@ -6,20 +6,28 @@ import {
 } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import './index.css';
+import Navigation from './components/Navigation/Navigation';
 
-const App: React.FC = () => {
+const AppRoutes: React.FC = () => {
   return (
-    <div className='app-container'>
-      <Router>
-        <Routes>
-          <Route path='' element={<Dashboard />} />
+    <Routes>
+      {/* Add some home page content */}
+      <Route path='' element={<div>Home</div>} />
+      <Route path='/dashboard' element={<Dashboard />} />
 
-          {/* Catch all unknown routes and redirect */}
-          <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
-      </Router>
-    </div>
+      {/* Catch all unknown routes and redirect */}
+      <Route path='*' element={<Navigate to='/' />} />
+    </Routes>
   );
 };
+
+const App: React.FC = () => (
+  <div className='app-container'>
+    <Router>
+      <Navigation />
+      <AppRoutes />
+    </Router>
+  </div>
+);
 
 export default App;
