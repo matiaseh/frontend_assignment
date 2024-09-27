@@ -5,8 +5,8 @@ import {
   Routes,
 } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
-import './index.css';
 import Navigation from './components/Navigation/Navigation';
+import './index.css';
 
 const AppRoutes: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import styles from './userfilter.module.scss';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 interface UserFiltersProps {
   searchTerm: string;

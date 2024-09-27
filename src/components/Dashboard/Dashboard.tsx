@@ -1,10 +1,10 @@
-import styles from './dashboard.module.scss';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { API_BASE_URL } from '../../constants/apiConstants';
 import { useState } from 'react';
-import UserFilters from '../UserFilter/UserFilter';
+import { API_BASE_URL } from '../../constants/apiConstants';
 import { User } from '../../types/api';
+import UserFilters from '../UserFilter/UserFilter';
+import styles from './dashboard.module.scss';
 
 const fetchUsers = async (): Promise<User[]> => {
   const { data } = await axios.get(`${API_BASE_URL}/users`);
