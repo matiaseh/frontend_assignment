@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './userfilter.module.scss';
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 interface UserFiltersProps {
   searchTerm: string;
@@ -18,17 +20,19 @@ const UserFilters: React.FC<UserFiltersProps> = ({
   setSortField,
 }) => {
   return (
-    <div>
+    <div className={styles.filtersContainer}>
       <input
         type='text'
         placeholder='Filter by name, email, phone or address'
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
+        className={styles.searchInput}
       />
 
       <select
         value={sortField}
         onChange={e => setSortField(e.target.value as 'name' | 'email')}
+        className={styles.sortSelect}
       >
         <option value='name'>Sort by Name</option>
         <option value='email'>Sort by Email</option>
@@ -36,8 +40,9 @@ const UserFilters: React.FC<UserFiltersProps> = ({
 
       <button
         onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+        className={styles.sortButton}
       >
-        Sort {sortOrder === 'asc' ? 'Descending' : 'Ascending'}
+        {sortOrder === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
       </button>
     </div>
   );
