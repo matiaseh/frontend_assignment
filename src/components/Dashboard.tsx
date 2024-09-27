@@ -18,8 +18,27 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.dashboard}>
-      <h1 className={styles.header}>Users</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <h1>User List</h1>
+      <div className={styles.userCards}>
+        {data.map((user: any) => (
+          <div key={user.id} className={styles.userCard}>
+            <h2>{user.name}</h2>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p>
+              <strong>Phone:</strong> {user.phone}
+            </p>
+            <p>
+              <strong>Website:</strong> {user.website}
+            </p>
+            <p>
+              <strong>Address:</strong> {user.address.street},{' '}
+              {user.address.suite}, {user.address.city}, {user.address.zipcode}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
