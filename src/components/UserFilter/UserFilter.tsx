@@ -29,6 +29,7 @@ const UserFilters: React.FC<UserFiltersProps> = ({
         className={styles.searchInput}
       />
 
+      {/* TODO: Store filter selection to localStorage for example */}
       <select
         value={sortField}
         onChange={e => setSortField(e.target.value as 'name' | 'email')}
