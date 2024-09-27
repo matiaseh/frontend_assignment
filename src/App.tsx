@@ -1,7 +1,12 @@
 import Dashboard from './components/Dashboard/Dashboard';
+import './index.css';
 
 const App: React.FC = () => {
-  return <Dashboard />;
+  return (
+    <div className='app-container'>
+      <Dashboard />
+    </div>
+  );
 };
 
 export default App;
