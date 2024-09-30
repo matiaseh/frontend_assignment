@@ -6,6 +6,25 @@
   }
 }
 
+.loading,
+.error,
+.noUsers {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.noUsers {
+  color: #6c757d;
+}
+
 .userCards {
   display: flex;
   flex-wrap: wrap;
